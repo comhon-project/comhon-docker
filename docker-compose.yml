@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    image: comhon:sample
+    container_name: comhon_sample
+#    volumes:
+#      - ./docker/assets/index.php:/var/www/html/index.php
+#      - ../comhon/src:/var/www/html/vendor/comhon-project/comhon/src
+    ports:
+      - "8000:80"

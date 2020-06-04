@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "name": "my_sample",
+    "values": [10, 20, 50],
+    "object": {
+        "id": "my_id",
+        "number": 12.5
+    }
+}

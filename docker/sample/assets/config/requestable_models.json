@@ -1,0 +1,8 @@
+{
+  "manifest": "Comhon\\Manifest",
+  "basic": "Sample\\Basic",
+  "person": "Sample\\Person",
+  "man": "Sample\\Person\\Man",
+  "woman": "Sample\\Person\\Woman",
+  "place": "Sample\\Place"
+}

@@ -1,0 +1,64 @@
+{
+    "name": "Sample\\Person",
+    "is_serializable": false,
+    "properties": [
+        {
+            "name": "id",
+            "is_id": true,
+            "__inheritance__": "Comhon\\Manifest\\Property\\Integer"
+        },
+        {
+            "name": "firstName",
+            "__inheritance__": "Comhon\\Manifest\\Property\\String"
+        },
+        {
+            "name": "lastName",
+            "__inheritance__": "Comhon\\Manifest\\Property\\String"
+        },
+        {
+            "name": "birthDate",
+            "__inheritance__": "Comhon\\Manifest\\Property\\DateTime"
+        },
+        {
+            "name": "birthPlace",
+            "model": "\\Sample\\Place",
+            "is_foreign": true,
+            "__inheritance__": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "bestFriend",
+            "model": "\\Sample\\Person",
+            "is_foreign": true,
+            "__inheritance__": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "father",
+            "model": "\\Sample\\Person\\Man",
+            "is_foreign": true,
+            "__inheritance__": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "mother",
+            "model": "\\Sample\\Person\\Woman",
+            "is_foreign": true,
+            "__inheritance__": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "children",
+            "values": {
+                "name": "child",
+                "model": "\\Sample\\Person"
+            },
+            "aggregations": [
+                "mother",
+                "father"
+            ],
+            "__inheritance__": "Comhon\\Manifest\\Property\\Aggregation"
+        }
+    ],
+    "version": "3.0",
+    "inheritance_requestables": [
+        "\\Sample\\Person\\Man",
+        "\\Sample\\Person\\Woman"
+    ]
+}

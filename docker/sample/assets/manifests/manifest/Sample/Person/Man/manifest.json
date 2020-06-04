@@ -1,0 +1,8 @@
+{
+    "name": "Sample\\Person\\Man",
+    "extends": [
+        "\\Sample\\Person"
+    ],
+    "is_serializable": true,
+    "version": "3.0"
+}

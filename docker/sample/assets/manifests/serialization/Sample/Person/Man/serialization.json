@@ -1,0 +1,7 @@
+{
+    "name": "Sample\\Person\\Man",
+    "version": "3.0",
+    "inheritance_values": [
+        "Sample\\Person\\Man"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Sample\\Basic",
+    "version": "3.0",
+    "serialization": {
+        "settings": {
+            "dir_path": ".\/sample\/basic",
+            "file_name": "file.json",
+            "__inheritance__": "Comhon\\File\\JsonFile"
+        }
+    }
+}

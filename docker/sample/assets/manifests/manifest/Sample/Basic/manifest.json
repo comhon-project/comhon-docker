@@ -1,0 +1,50 @@
+{
+    "name": "Sample\\Basic",
+    "is_serializable": true,
+    "properties": [
+        {
+            "name": "id",
+            "is_id": true,
+            "is_required": true,
+            "not_null": true,
+            "__inheritance__": "Comhon\\Manifest\\Property\\Integer"
+        },
+        {
+            "name": "name",
+            "length": "[5,]",
+            "not_null": true,
+            "__inheritance__": "Comhon\\Manifest\\Property\\String"
+        },
+        {
+            "name": "values",
+            "values": {
+                "name": "value",
+                "interval": "[10,100]",
+                "__inheritance__": "Comhon\\Manifest\\Value\\Integer"
+            },
+            "__inheritance__": "Comhon\\Manifest\\Property\\Array"
+        },
+        {
+            "name": "object",
+            "model": "Object",
+            "__inheritance__": "Comhon\\Manifest\\Property\\Object"
+        }
+    ],
+    "version": "3.0",
+    "types": [
+        {
+            "name": "Object",
+            "properties": [
+                {
+                    "name": "id",
+                    "is_id": true,
+                    "__inheritance__": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "number",
+                    "__inheritance__": "Comhon\\Manifest\\Property\\Float"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "manifest_format": "json",
+  "autoload": {
+    "manifest":{
+      "Sample":"../manifests/manifest/Sample"
+    },
+    "serialization":{
+      "Sample":"../manifests/serialization/Sample"
+    },
+    "options":{
+      "Comhon":"../manifests/options/Comhon",
+      "Sample":"../manifests/options/Sample"
+    }
+  },
+  "regex_list":"./regex.json",
+  "sql_table": "./table",
+  "sql_database": "./database",
+  "date_time_format": "c",
+  "database": {
+    "charset": "utf8",
+    "timezone": "UTC"
+  }
+}
