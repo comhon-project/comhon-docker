@@ -1,4 +1,4 @@
-FROM comhon:latest
+FROM comhon/comhon:0.1
 
 RUN apt-get install -y postgresql postgresql-client \
     && localedef -i en_US -f UTF-8 en_US.UTF-8 

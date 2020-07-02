@@ -6,13 +6,5 @@
             "id": "public.place",
             "__inheritance__": "Comhon\\SqlTable"
         }
-    },
-    "properties": {
-        "geographicLatitude": {
-            "serialization_name": "geographic_latitude"
-        },
-        "geographicLongitude": {
-            "serialization_name": "geographic_longitude"
-        }
     }
 }

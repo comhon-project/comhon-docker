@@ -1,11 +1,11 @@
 {
     "name": "Sample\\Place",
-    "is_serializable": true,
     "properties": [
         {
             "name": "id",
             "is_id": true,
-            "__inheritance__": "Comhon\\Manifest\\Property\\Integer"
+            "auto": "incremental",
+            "__inheritance__": "Comhon\\Manifest\\Property\\Index"
         },
         {
             "name": "number",
@@ -13,25 +13,11 @@
         },
         {
             "name": "type",
-            "enum": [
-                "street",
-                "avenue",
-                "boulevard",
-                "square"
-            ],
             "__inheritance__": "Comhon\\Manifest\\Property\\String"
         },
         {
             "name": "name",
             "__inheritance__": "Comhon\\Manifest\\Property\\String"
-        },
-        {
-            "name": "geographicLatitude",
-            "__inheritance__": "Comhon\\Manifest\\Property\\Float"
-        },
-        {
-            "name": "geographicLongitude",
-            "__inheritance__": "Comhon\\Manifest\\Property\\Float"
         },
         {
             "name": "town",

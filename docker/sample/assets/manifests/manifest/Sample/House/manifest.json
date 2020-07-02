@@ -1,0 +1,26 @@
+{
+    "name": "Sample\\House",
+    "properties": [
+        {
+            "name": "id",
+            "is_id": true,
+            "auto": "incremental",
+            "__inheritance__": "Comhon\\Manifest\\Property\\Index"
+        },
+        {
+            "name": "surface",
+            "__inheritance__": "Comhon\\Manifest\\Property\\Float"
+        },
+        {
+            "name": "garden",
+            "__inheritance__": "Comhon\\Manifest\\Property\\Boolean"
+        },
+        {
+            "name": "owner",
+            "model": "\\Sample\\Person",
+            "is_foreign": true,
+            "__inheritance__": "Comhon\\Manifest\\Property\\Object"
+        }
+    ],
+    "version": "3.0"
+}

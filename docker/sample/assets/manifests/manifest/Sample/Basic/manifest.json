@@ -1,6 +1,5 @@
 {
     "name": "Sample\\Basic",
-    "is_serializable": true,
     "properties": [
         {
             "name": "id",

@@ -1,33 +1,31 @@
 {
     "name": "Sample\\Person",
-    "is_serializable": false,
+    "is_abstract": true,
     "properties": [
         {
             "name": "id",
             "is_id": true,
-            "__inheritance__": "Comhon\\Manifest\\Property\\Integer"
+            "auto": "incremental",
+            "__inheritance__": "Comhon\\Manifest\\Property\\Index"
         },
         {
             "name": "firstName",
+            "not_null": true,
             "__inheritance__": "Comhon\\Manifest\\Property\\String"
         },
         {
             "name": "lastName",
+            "not_null": true,
             "__inheritance__": "Comhon\\Manifest\\Property\\String"
         },
         {
             "name": "birthDate",
+            "not_null": true,
             "__inheritance__": "Comhon\\Manifest\\Property\\DateTime"
         },
         {
             "name": "birthPlace",
             "model": "\\Sample\\Place",
-            "is_foreign": true,
-            "__inheritance__": "Comhon\\Manifest\\Property\\Object"
-        },
-        {
-            "name": "bestFriend",
-            "model": "\\Sample\\Person",
             "is_foreign": true,
             "__inheritance__": "Comhon\\Manifest\\Property\\Object"
         },
@@ -54,11 +52,18 @@
                 "father"
             ],
             "__inheritance__": "Comhon\\Manifest\\Property\\Aggregation"
+        },
+        {
+            "name": "houses",
+            "values": {
+                "name": "house",
+                "model": "\\Sample\\House"
+            },
+            "aggregations": [
+                "owner"
+            ],
+            "__inheritance__": "Comhon\\Manifest\\Property\\Aggregation"
         }
     ],
-    "version": "3.0",
-    "inheritance_requestables": [
-        "\\Sample\\Person\\Man",
-        "\\Sample\\Person\\Woman"
-    ]
+    "version": "3.0"
 }

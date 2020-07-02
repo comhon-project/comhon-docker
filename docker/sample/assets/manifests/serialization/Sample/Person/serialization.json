@@ -2,7 +2,7 @@
     "name": "Sample\\Person",
     "version": "3.0",
     "serialization": {
-        "inheritance_key": "sex",
+        "inheritance_key": "gender",
         "foreign_settings": {
             "id": "public.person",
             "__inheritance__": "Comhon\\SqlTable"
@@ -15,14 +15,8 @@
         "lastName": {
             "serialization_name": "last_name"
         },
-        "birthDate": {
-            "serialization_name": "birth_date"
-        },
         "birthPlace": {
-            "serialization_name": "birth_place"
-        },
-        "bestFriend": {
-            "serialization_name": "best_friend"
+            "serialization_name": "birth_place_id"
         },
         "father": {
             "serialization_name": "father_id"

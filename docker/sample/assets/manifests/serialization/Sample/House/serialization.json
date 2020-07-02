@@ -1,0 +1,15 @@
+{
+    "name": "Sample\\House",
+    "version": "3.0",
+    "serialization": {
+        "foreign_settings": {
+            "id": "public.house",
+            "__inheritance__": "Comhon\\SqlTable"
+        }
+    },
+    "properties": {
+        "owner": {
+            "serialization_name": "owner_id"
+        }
+    }
+}

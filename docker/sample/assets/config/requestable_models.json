@@ -4,5 +4,6 @@
   "person": "Sample\\Person",
   "man": "Sample\\Person\\Man",
   "woman": "Sample\\Person\\Woman",
-  "place": "Sample\\Place"
+  "place": "Sample\\Place",
+  "house": "Sample\\House"
 }
