@@ -4,6 +4,7 @@
     "properties": [
         {
             "name": "id",
+            "not_null": true,
             "is_id": true,
             "auto": "incremental",
             "__inheritance__": "Comhon\\Manifest\\Property\\Index"
@@ -11,15 +12,20 @@
         {
             "name": "firstName",
             "not_null": true,
+            "is_required": true,
+            "pattern": "name",
             "__inheritance__": "Comhon\\Manifest\\Property\\String"
         },
         {
             "name": "lastName",
             "not_null": true,
+            "is_required": true,
+            "pattern": "name",
             "__inheritance__": "Comhon\\Manifest\\Property\\String"
         },
         {
             "name": "birthDate",
+            "is_required": true,
             "not_null": true,
             "__inheritance__": "Comhon\\Manifest\\Property\\DateTime"
         },

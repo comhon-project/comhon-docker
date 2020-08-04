@@ -15,6 +15,9 @@
         "lastName": {
             "serialization_name": "last_name"
         },
+        "birthDate": {
+            "serialization_name": "birth_date"
+        },
         "birthPlace": {
             "serialization_name": "birth_place_id"
         },
