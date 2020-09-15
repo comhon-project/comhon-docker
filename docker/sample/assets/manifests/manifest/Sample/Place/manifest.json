@@ -5,23 +5,23 @@
             "name": "id",
             "is_id": true,
             "auto": "incremental",
-            "__inheritance__": "Comhon\\Manifest\\Property\\Index"
+            "inheritance-": "Comhon\\Manifest\\Property\\Index"
         },
         {
             "name": "number",
-            "__inheritance__": "Comhon\\Manifest\\Property\\Integer"
+            "inheritance-": "Comhon\\Manifest\\Property\\Integer"
         },
         {
             "name": "type",
-            "__inheritance__": "Comhon\\Manifest\\Property\\String"
+            "inheritance-": "Comhon\\Manifest\\Property\\String"
         },
         {
             "name": "name",
-            "__inheritance__": "Comhon\\Manifest\\Property\\String"
+            "inheritance-": "Comhon\\Manifest\\Property\\String"
         },
         {
             "name": "town",
-            "__inheritance__": "Comhon\\Manifest\\Property\\String"
+            "inheritance-": "Comhon\\Manifest\\Property\\String"
         }
     ],
     "version": "3.0"

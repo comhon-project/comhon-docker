@@ -5,27 +5,33 @@
         "inheritance_key": "gender",
         "foreign_settings": {
             "id": "public.person",
-            "__inheritance__": "Comhon\\SqlTable"
+            "inheritance-": "Comhon\\SqlTable"
         }
     },
-    "properties": {
-        "firstName": {
+    "properties": [
+        {
+            "property_name": "firstName",
             "serialization_name": "first_name"
         },
-        "lastName": {
+        {
+            "property_name": "lastName",
             "serialization_name": "last_name"
         },
-        "birthDate": {
+        {
+            "property_name": "birthDate",
             "serialization_name": "birth_date"
         },
-        "birthPlace": {
+        {
+            "property_name": "birthPlace",
             "serialization_name": "birth_place_id"
         },
-        "father": {
+        {
+            "property_name": "father",
             "serialization_name": "father_id"
         },
-        "mother": {
+        {
+            "property_name": "mother",
             "serialization_name": "mother_id"
         }
-    }
+    ]
 }

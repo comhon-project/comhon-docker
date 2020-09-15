@@ -26,9 +26,11 @@ use Comhon\Exception\HTTP\ResponseException;
 use Comhon\Exception\HTTP\MalformedRequestException;
 use Comhon\Model\Property\ForeignProperty;
 use Comhon\Model\Model;
+use Comhon\Utils\Utils;
+use Comhon\Api\ResponseBuilder;
+use Comhon\Interfacer\Interfacer;
 use Comhon\Interfacer\XMLInterfacer;
 use Comhon\Interfacer\AssocArrayInterfacer;
-use Comhon\Utils\Utils;
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -39,38 +41,37 @@ Config::setLoadPath($config_af);
 
 $requestableModels_af = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'requestable_models.json';
 $requestableModels = json_decode(file_get_contents($requestableModels_af), true);
-
+$resolver = function ($pathModelName) use ($requestableModels) {
+    $key = strtolower($pathModelName);
+    return array_key_exists($key, $requestableModels) ? $requestableModels[$key] : null;
+};
 // Comhon framework handle common requests
-$response = RequestHandler::handle('/api/comhon', $requestableModels);
+$response = RequestHandler::handle('/api/comhon', $resolver);
 
 // specifics requests 
-if ($response->getCode() == 404 && $response->getContent() == 'not handled route') {
+if ($response->getStatusCode() == 404 && $response->getFullBodyContents() == 'not handled route') {
 	$matches = null;
 	$method = $_SERVER['REQUEST_METHOD'];
-	$route = urldecode(substr(preg_replace('~/+~', '/', $_SERVER['REQUEST_URI'].'/'), 0, -1));
-	if (strpos($route, '?') !== false) {
-		$route = strstr($route, '?', true);
-	}
-	if (preg_match('/^\\/api\\/namespace\\/(\\w+)$/', $route, $matches) && $method == 'POST') {
+	$path = RequestHandler::getFilteredServerRequestPath(true);
+	
+	if (preg_match('/^\\/api\\/namespace\\/(\\w+)$/', $path, $matches) && $method == 'POST') {
 		$response = createNamespace($matches[1], $config_af);
-	} elseif (preg_match('/^\\/api\\/pattern\\/(\\w+)$/', $route, $matches) && ($method == 'POST' || $method == 'PUT')) {
-		$response = createOrUpdatePattern($matches[1], $method);
-	} elseif (preg_match('/^\\/api\\/serialize\\/(\\w+(\\\\\\w+)*)$/', $route, $matches) && $method == 'POST') {
+	} elseif (preg_match('/^\\/api\\/serialize\\/(\\w+(\\\\\\w+)*)$/', $path, $matches) && $method == 'POST') {
 		$response = createModelSerialization($matches[1]);
-	} elseif (preg_match('/^\\/api\\/aggregation\\/(\\w+(\\\\\\w+)*)$/', $route, $matches) && $method == 'POST') {
+	} elseif (preg_match('/^\\/api\\/aggregation\\/(\\w+(\\\\\\w+)*)$/', $path, $matches) && $method == 'POST') {
 		$response = transformPropertyToAggregation($matches[1]);
+	} elseif (preg_match('/^\\/api\\/pattern\\/(\\w+)$/', $path, $matches) && ($method == 'POST' || $method == 'PUT')) {
+	    $response = createOrUpdatePattern($matches[1], $method);
+	} elseif (preg_match('/^\\/api\\/models$/', $path, $matches)) {
+	    $response = getModelNames($requestableModels);
 	}
 }
 
 // request is handled by comhon framework but need some specifics handling
-if ($response->getCode() == 201) {
+if ($response->getStatusCode() == 201) {
     $matches = null;
-    $method = $_SERVER['REQUEST_METHOD'];
-	$route = urldecode(substr(preg_replace('~/+~', '/', $_SERVER['REQUEST_URI'].'/'), 0, -1));
-	if (strpos($route, '?') !== false) {
-		$route = strstr($route, '?', true);
-	}
-	if (preg_match('/^\\/api\\/comhon\\/manifest$/', $route, $matches) && $method == 'POST') {
+    $path = RequestHandler::getFilteredServerRequestPath(true);
+    if (preg_match('/^\\/api\\/comhon\\/manifest$/', $path, $matches) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 		addApiModelName($response, $requestableModels, $requestableModels_af);
 	}
 }
@@ -87,8 +88,7 @@ $response->send();
 function createNamespace($namespace, $config_af) {
 	$response = new Response();
 	if (Config::getInstance()->getManifestAutoloadList()->hasValue($namespace)) {
-		$response->setCode(409);
-		$response->setContent("namespace $namespace already exists");
+	    $response = ResponseBuilder::buildSimpleResponse(409, [], "namespace $namespace already exists");
 	} else {
 		$success = true;
 		foreach (['manifest', 'serialization', 'options'] as $key) {
@@ -97,8 +97,7 @@ function createNamespace($namespace, $config_af) {
 			if (mkdir($directory)) {
 				Config::getInstance()->getValue('autoload')->getValue($key)->setValue($namespace, $namespacePath_rd);
 			} else {
-				$response->setCode(500);
-				$response->setContent('something goes wrong during directory creation');
+			    $response = ResponseBuilder::buildSimpleResponse(500, [], 'something goes wrong during directory creation');
 				$success = false;
 				break;
 			}
@@ -106,8 +105,7 @@ function createNamespace($namespace, $config_af) {
 		if ($success) {
 			$interfacer = new StdObjectInterfacer();
 			if(!$interfacer->write($interfacer->export(Config::getInstance()), $config_af, true)) {
-				$response->setCode(500);
-				$response->setContent('something goes wrong during saving config');
+			    $response = ResponseBuilder::buildSimpleResponse(500, [], 'something goes wrong during saving config');
 			}
 		}
 	}
@@ -122,24 +120,20 @@ function createNamespace($namespace, $config_af) {
  * @return \Comhon\Api\Response
  */
 function createOrUpdatePattern($pattern, $method) {
-	$response = new Response();
 	$new = $method == 'POST';
 	$regex = file_get_contents('php://input');
 	$regexs = json_decode(file_get_contents(Config::getInstance()->getRegexListPath()), true);
 	
 	if (preg_match($regex, '') === false) {
-		$response->setCode(400);
-		$response->setContent('invalid regex');
+	    $response = ResponseBuilder::buildSimpleResponse(400, [], 'invalid regex');
 	} elseif ($new && array_key_exists($pattern, $regexs)) {
-		$response->setCode(409);
-		$response->setContent("pattern $pattern already exists");
+	    $response = ResponseBuilder::buildSimpleResponse(409, [], "pattern $pattern already exists");
 	} elseif (!$new && !array_key_exists($pattern, $regexs)) {
-		$response->setCode(404);
-		$response->setContent("pattern $pattern doesn't exists");
+	    $response = ResponseBuilder::buildSimpleResponse(404, [], "pattern $pattern doesn't exists");
 	}else {
 		$regexs[$pattern] = $regex;
 		file_put_contents(Config::getInstance()->getRegexListPath(), json_encode($regexs, JSON_PRETTY_PRINT));
-		$response->setCode($new ? 201 : 200);
+		$response = new Response($new ? 201 : 200);
 	}
 	return $response;
 }
@@ -194,11 +188,9 @@ function createModelSerialization($modelName) {
 			$dbHandler->getPDO()->exec($query);
 		}
 	} catch (NotDefinedModelException $e) {
-		$response->setCode(404);
-		$response->setContent("resource model '$modelName' doesn't exist");
+	    $response = ResponseBuilder::buildSimpleResponse(404, [], "resource model '$modelName' doesn't exist");
 	} catch (\Exception $e) {
-		$response->setCode(500);
-		$response->setContent($e->getMessage());
+		$response = ResponseBuilder::buildSimpleResponse(500, [], $e->getMessage());
 	}
 	return $response;
 }
@@ -212,14 +204,14 @@ function createModelSerialization($modelName) {
  * @return \Comhon\Api\Response
  */
 function transformPropertyToAggregation($modelName) {
+    $response = new Response();
 	try {
-		$response = new Response();
 		try {
 			$model = ModelManager::getInstance()->getInstanceModel($modelName);
 		} catch (NotDefinedModelException $e) {
 			throw new ResponseException(404, "resource model '{$modelName}' doesn't exist");
 		}
-		$interfacer = RequestHandler::getInterfacerFromContentTypeHeader(apache_request_headers());
+		$interfacer = RequestHandler::getInterfacerFromContentTypeHeader(RequestHandler::getServerRequest());
 		$modelPropertyAggregation = ModelManager::getInstance()->getInstanceModel('Comhon\Manifest\Property\Aggregation');
 		$modelAggregations = $modelPropertyAggregation->getProperty('aggregations')->getModel();
 		
@@ -233,7 +225,7 @@ function transformPropertyToAggregation($modelName) {
 			'property'
 		);
 		$aggregationProperties = RequestHandler::importBody(
-			file_get_contents('php://input'),
+		    RequestHandler::getServerRequest(),
 			$bodyModel,
 			$interfacer
 		);
@@ -322,31 +314,53 @@ function transformPropertyToAggregation($modelName) {
 	} catch (ResponseException $e) {
 		$response = $e->getResponse();
 	} catch (\Exception $e) {
-		$response->setCode(500);
-		$response->setContent($e->getMessage());
+		$response = ResponseBuilder::buildSimpleResponse(500, [], $e->getMessage());
 	}
 	return $response;
+}
+
+function getModelNames(array $requestableModels) {
+    $method = RequestHandler::getServerRequest()->getMethod();
+    if ($method == 'OPTIONS') {
+        return new Response(200, ['Allow' => implode(', ', ['GET', 'HEAD', 'OPTIONS'])]);
+    }
+    if ($method != 'GET' && $method != 'HEAD') {
+        return new Response(405, ['Allow' => implode(', ', ['GET', 'HEAD', 'OPTIONS'])], "method $method not allowed");
+    }
+    $interfacer = RequestHandler::getInterfacerFromAcceptHeader(RequestHandler::getServerRequest());
+    
+    if ($interfacer instanceof XMLInterfacer) {
+        $node = $interfacer->createArrayNode('root');
+        foreach ($requestableModels as $apiName => $modelName) {
+            $interfacer->addAssociativeValue($node, $modelName, $apiName, 'node');
+        }
+    } elseif ($interfacer instanceof AssocArrayInterfacer) {
+        $node = $requestableModels;
+    } else {
+        throw new \Exception('not handled Content-Type : '.get_class($interfacer));
+    }
+    $body = $interfacer->toString($node);
+    $headers = ['Content-Type' => $interfacer->getMediaType()];
+    if ($method == 'HEAD') {
+        $headers['Content-Length'] = strlen($body);
+        $body = '';
+    }
+    return new Response(200, $headers, $body);
 }
 
 /**
  * add api model name in requestable models list for provided model (in response object)
  * 
- * @param Response $comhonResponse
+ * @param Response $response
  * @param string[] $requestableModels
  * @param string $requestableModels_af
  * @throws ResponseException
  */
-function addApiModelName(Response $comhonResponse, $requestableModels, $requestableModels_af) {
-	if (is_array($comhonResponse->getContent())) {
-		$interfacer = new AssocArrayInterfacer();
-	} elseif ($comhonResponse->getContent() instanceof \stdClass) {
-		$interfacer = new StdObjectInterfacer();
-	} elseif ($comhonResponse->getContent() instanceof \DOMNode) {
-		$interfacer = new XMLInterfacer();
-	} else {
-		throw new ResponseException(500);
-	}
-	$modelName = $interfacer->getValue($comhonResponse->getContent(), 'name');
+function addApiModelName(Response $response, $requestableModels, $requestableModels_af) {
+    $content = $response->getFullBodyContents();
+    
+    $interfacer = Interfacer::getInstance($response->getHeaderLine('Content-Type'));
+	$modelName = $interfacer->getValue($interfacer->fromString($content), 'name');
 	$apiModelName = Utils::toKebabCase(str_replace('\\', '-', $modelName));
 	if (array_key_exists($apiModelName, $requestableModels)) {
 		$i = 2;

@@ -4,12 +4,13 @@
     "serialization": {
         "foreign_settings": {
             "id": "public.house",
-            "__inheritance__": "Comhon\\SqlTable"
+            "inheritance-": "Comhon\\SqlTable"
         }
     },
-    "properties": {
-        "owner": {
+    "properties": [
+        {
+            "property_name": "owner",
             "serialization_name": "owner_id"
         }
-    }
+    ]
 }
