@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: comhon/comhon:0.1-sample
+    image: comhon/comhon:0.2-sample
     container_name: comhon_sample
 #    volumes:
 #      - ./docker/assets/index.php:/var/www/html/index.php
