@@ -8,6 +8,7 @@ RUN apt-get update \
 
 COPY ./vendor ./vendor
 COPY ./docker/assets .
+COPY ./docker/public .
 
 RUN chown www-data:www-data ./config/*
 RUN chown www-data:www-data ./manifests/*
