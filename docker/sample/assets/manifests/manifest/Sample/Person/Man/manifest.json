@@ -1,5 +1,7 @@
 {
     "name": "Sample\\Person\\Man",
+    "is_main": true,
+    "share_parent_id": true,
     "extends": [
         "\\Sample\\Person"
     ],

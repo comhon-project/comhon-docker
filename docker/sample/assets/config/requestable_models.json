@@ -1,9 +1,32 @@
-{
-  "manifest": "Comhon\\Manifest",
-  "basic": "Sample\\Basic",
-  "person": "Sample\\Person",
-  "man": "Sample\\Person\\Man",
-  "woman": "Sample\\Person\\Woman",
-  "place": "Sample\\Place",
-  "house": "Sample\\House"
-}
+[
+  {
+    "comhon_model_name": "Comhon\\Manifest",
+    "api_model_name": "manifest"
+  },
+  {
+    "comhon_model_name": "Sample\\Basic",
+    "api_model_name": "basic"
+  },
+  {
+    "comhon_model_name": "Sample\\Person",
+    "api_model_name": "person"
+  },
+  {
+    "comhon_model_name": "Sample\\Person\\Man",
+    "api_model_name": "man",
+    "extends": ["Sample\\Person"]
+  },
+  {
+    "comhon_model_name": "Sample\\Person\\Woman",
+    "api_model_name": "woman",
+    "extends": ["Sample\\Person"]
+  },
+  {
+    "comhon_model_name": "Sample\\Place",
+    "api_model_name": "place"
+  },
+  {
+    "comhon_model_name": "Sample\\House",
+    "api_model_name": "house"
+  }
+]

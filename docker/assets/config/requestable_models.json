@@ -1,3 +1,6 @@
-{
-  "manifest": "Comhon\\Manifest"
-}
+[
+  {
+    "comhon_model_name": "Comhon\\Manifest",
+    "api_model_name": "manifest"
+  }
+]

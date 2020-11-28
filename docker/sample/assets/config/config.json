@@ -2,9 +2,11 @@
   "manifest_format": "json",
   "autoload": {
     "manifest":{
+      "Docker":"../manifests/manifest/Docker",
       "Sample":"../manifests/manifest/Sample"
     },
     "serialization":{
+      "Docker":"../manifests/serialization/Docker",
       "Sample":"../manifests/serialization/Sample"
     },
     "options":{
@@ -16,8 +18,17 @@
   "sql_table": "./table",
   "sql_database": "./database",
   "date_time_format": "c",
+  "cache_settings": "directory:../cache",
   "database": {
     "charset": "utf8",
     "timezone": "UTC"
-  }
+  },
+  "default_database": "1",
+  "account_model":"Docker\\Account",
+  "authentication": {
+    "is_required": true,
+    "account_identifier_property_name":"username",
+    "account_password_property_name":"password"
+  },
+  "inheritance-": "Docker\\Config"
 }

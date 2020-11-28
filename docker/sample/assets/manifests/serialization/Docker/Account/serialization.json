@@ -1,0 +1,10 @@
+{
+    "name": "Docker\\Account",
+    "version": "3.0",
+    "serialization": {
+        "foreign_settings": {
+            "id": "public.account",
+            "inheritance-": "Comhon\\SqlTable"
+        }
+    }
+}

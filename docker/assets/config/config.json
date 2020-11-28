@@ -1,7 +1,9 @@
 {
   "manifest_format": "json",
   "autoload": {
-    "manifest":{},
+    "manifest":{
+      "Docker":"../manifests/manifest/Docker"
+    },
     "serialization":{},
     "options":{
       "Comhon":"../manifests/options/Comhon"
@@ -11,8 +13,10 @@
   "sql_table": "./table",
   "sql_database": "./database",
   "date_time_format": "c",
+  "cache_settings": "directory:../cache",
   "database": {
     "charset": "utf8",
     "timezone": "UTC"
-  }
+  },
+  "inheritance-": "Docker\\Config"
 }

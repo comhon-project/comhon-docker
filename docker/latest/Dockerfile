@@ -11,3 +11,8 @@ COPY ./docker/assets .
 
 RUN chown www-data:www-data ./config/*
 RUN chown www-data:www-data ./manifests/*
+
+COPY ./docker/latest/start ./start
+RUN chmod -R 755 ./start
+
+ENTRYPOINT ["/var/www/html/start/script/start.sh"]

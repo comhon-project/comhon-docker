@@ -1,0 +1,28 @@
+{
+    "name": "Docker\\Account",
+    "version": "3.0",
+    "properties": [
+        {
+            "name": "id",
+            "is_id": true,
+            "not_null": true,
+            "auto": "incremental",
+            "inheritance-": "Comhon\\Manifest\\Property\\Index"
+        },
+        {
+            "name": "username",
+            "length": "[3,30]",
+            "is_required": true,
+            "not_null": true,
+            "inheritance-": "Comhon\\Manifest\\Property\\String"
+        },
+        {
+            "name": "password",
+            "length": "[8,32]",
+            "is_required": true,
+            "is_private": true,
+            "not_null": true,
+            "inheritance-": "Comhon\\Manifest\\Property\\String"
+        }
+    ]
+}

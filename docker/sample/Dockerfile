@@ -1,4 +1,4 @@
-FROM comhon/comhon:0.1
+FROM comhon/comhon:0.2
 
 RUN apt-get install -y postgresql postgresql-client \
     && localedef -i en_US -f UTF-8 en_US.UTF-8 
@@ -21,7 +21,5 @@ RUN chown -R www-data:www-data ./manifests/serialization
 RUN chown    www-data:www-data ./manifests/options
 RUN chown -R www-data:www-data ./manifests/options/Sample
 RUN chown -R www-data:www-data ./sample/
-
-ENV DEFAULT_DATABASE_ID 1
 
 ENTRYPOINT ["/var/www/html/start/script/start.sh"]

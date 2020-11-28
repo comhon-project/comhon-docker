@@ -1,0 +1,46 @@
+{
+    "version": "3.0",
+    "name": "Docker\\Config",
+    "extends": [
+        "\\Comhon\\Config"
+    ],
+    "properties": [
+        {
+            "name": "default_database",
+            "model": "\\Comhon\\SqlDatabase",
+            "is_foreign": true,
+            "inheritance-": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "authentication",
+            "not_null": true,
+            "model": "Authentication",
+            "inheritance-": "Comhon\\Manifest\\Property\\Object"
+        }
+    ],
+    "types": [
+        {
+            "name": "Authentication",
+            "properties": [
+                {
+                    "name": "is_required",
+                    "not_null": true,
+                    "default": false,
+                    "inheritance-": "Comhon\\Manifest\\Property\\Boolean"
+                },
+                {
+                    "name": "account_identifier_property_name",
+                    "not_null": true,
+                    "is_required": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "account_password_property_name",
+                    "not_null": true,
+                    "is_required": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                }
+            ]
+        }
+    ]
+}

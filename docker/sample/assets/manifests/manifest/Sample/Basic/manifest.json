@@ -1,5 +1,6 @@
 {
     "name": "Sample\\Basic",
+    "is_main": true,
     "properties": [
         {
             "name": "id",
