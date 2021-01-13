@@ -1,0 +1,60 @@
+{
+    "name": "Sample\\Test",
+    "version": "3.0",
+    "properties": [
+        {
+            "serialization_name": "string_value",
+            "property_name": "stringValue"
+        },
+        {
+            "serialization_name": "float_value",
+            "property_name": "floatValue"
+        },
+        {
+            "serialization_name": "integer_value",
+            "property_name": "integerValue"
+        },
+        {
+            "serialization_name": "index_value",
+            "property_name": "indexValue"
+        },
+        {
+            "serialization_name": "boolean_value",
+            "property_name": "booleanValue"
+        },
+        {
+            "serialization_name": "percentage_value",
+            "property_name": "percentageValue"
+        },
+        {
+            "serialization_name": "date_value",
+            "property_name": "dateValue"
+        },
+        {
+            "serialization_name": "object_value",
+            "property_name": "objectValue"
+        },
+        {
+            "serialization_name": "object_values",
+            "property_name": "objectValues"
+        },
+        {
+            "serialization_name": "object_container",
+            "property_name": "objectContainer"
+        },
+        {
+            "serialization_name": "foreign_object_values",
+            "property_name": "foreignObjectValues"
+        },
+        {
+            "serialization_name": "object_ref_parent",
+            "property_name": "objectRefParent"
+        }
+    ],
+    "serialization": {
+        "foreign_settings": {
+            "id": "public.test",
+            "inheritance-": "Comhon\\SqlTable"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "id": 1,
+    "color": "red",
+    "user": "anonym",
+    "emails": [
+        "john.doe@gmail.com",
+        "jane.doe@gmail.com"
+    ],
+    "naturalNumber": 1,
+    "birthDate": "1900-01-01",
+    "intervalInArray": [-1, 1.5],
+    "enumValue": "plop1",
+    "enumIntArray": [1, 1, 3],
+    "enumFloatArray": [1.5, null],
+    "notNullArray": [1.5],
+    "notNullForeign": 1,
+    "notEmpty": "not_empty",
+    "notEmptyArray": ["not_empty"],
+    "length": "foo",
+    "sizeArray": [
+        ["one", "two", "ten", "one"],
+        ["not", "not", "not", "not"],
+        ["not", "not", "not"]
+    ]
+}

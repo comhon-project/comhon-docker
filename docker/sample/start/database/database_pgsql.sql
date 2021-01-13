@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.23
--- Dumped by pg_dump version 12.4 (Ubuntu 12.4-1.pgdg18.04+1)
+-- Dumped from database version 9.5.24
+-- Dumped by pg_dump version 13.1 (Ubuntu 13.1-1.pgdg18.04+1)
 
--- Started on 2020-09-21 01:46:56 CEST
+-- Started on 2021-01-13 18:42:39 CET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -42,9 +42,10 @@ DROP TABLE IF EXISTS public.person;
 DROP TABLE IF EXISTS public.place;
 DROP TABLE IF EXISTS public.house;
 DROP TABLE IF EXISTS public.account;
+DROP TABLE IF EXISTS public.test;
 
 --
--- TOC entry 188 (class 1259 OID 1051391)
+-- TOC entry 181 (class 1259 OID 1284646)
 -- Name: account; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -58,7 +59,7 @@ CREATE TABLE public.account (
 ALTER TABLE public.account OWNER TO root;
 
 --
--- TOC entry 187 (class 1259 OID 1051389)
+-- TOC entry 182 (class 1259 OID 1284649)
 -- Name: account_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -73,8 +74,8 @@ CREATE SEQUENCE public.account_id_seq
 ALTER TABLE public.account_id_seq OWNER TO root;
 
 --
--- TOC entry 2187 (class 0 OID 0)
--- Dependencies: 187
+-- TOC entry 2197 (class 0 OID 0)
+-- Dependencies: 182
 -- Name: account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -82,7 +83,7 @@ ALTER SEQUENCE public.account_id_seq OWNED BY public.account.id;
 
 
 --
--- TOC entry 181 (class 1259 OID 1051358)
+-- TOC entry 183 (class 1259 OID 1284651)
 -- Name: house; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -97,7 +98,7 @@ CREATE TABLE public.house (
 ALTER TABLE public.house OWNER TO root;
 
 --
--- TOC entry 182 (class 1259 OID 1051361)
+-- TOC entry 184 (class 1259 OID 1284654)
 -- Name: house_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -112,8 +113,8 @@ CREATE SEQUENCE public.house_id_seq
 ALTER TABLE public.house_id_seq OWNER TO root;
 
 --
--- TOC entry 2188 (class 0 OID 0)
--- Dependencies: 182
+-- TOC entry 2198 (class 0 OID 0)
+-- Dependencies: 184
 -- Name: house_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -121,7 +122,7 @@ ALTER SEQUENCE public.house_id_seq OWNED BY public.house.id;
 
 
 --
--- TOC entry 183 (class 1259 OID 1051363)
+-- TOC entry 185 (class 1259 OID 1284656)
 -- Name: person; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -140,7 +141,7 @@ CREATE TABLE public.person (
 ALTER TABLE public.person OWNER TO root;
 
 --
--- TOC entry 184 (class 1259 OID 1051369)
+-- TOC entry 186 (class 1259 OID 1284662)
 -- Name: person_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -155,8 +156,8 @@ CREATE SEQUENCE public.person_id_seq
 ALTER TABLE public.person_id_seq OWNER TO root;
 
 --
--- TOC entry 2189 (class 0 OID 0)
--- Dependencies: 184
+-- TOC entry 2199 (class 0 OID 0)
+-- Dependencies: 186
 -- Name: person_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -164,7 +165,7 @@ ALTER SEQUENCE public.person_id_seq OWNED BY public.person.id;
 
 
 --
--- TOC entry 185 (class 1259 OID 1051371)
+-- TOC entry 187 (class 1259 OID 1284664)
 -- Name: place; Type: TABLE; Schema: public; Owner: root
 --
 
@@ -180,7 +181,7 @@ CREATE TABLE public.place (
 ALTER TABLE public.place OWNER TO root;
 
 --
--- TOC entry 186 (class 1259 OID 1051377)
+-- TOC entry 188 (class 1259 OID 1284670)
 -- Name: place_id_seq; Type: SEQUENCE; Schema: public; Owner: root
 --
 
@@ -195,8 +196,8 @@ CREATE SEQUENCE public.place_id_seq
 ALTER TABLE public.place_id_seq OWNER TO root;
 
 --
--- TOC entry 2190 (class 0 OID 0)
--- Dependencies: 186
+-- TOC entry 2200 (class 0 OID 0)
+-- Dependencies: 188
 -- Name: place_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: root
 --
 
@@ -204,7 +205,31 @@ ALTER SEQUENCE public.place_id_seq OWNED BY public.place.id;
 
 
 --
--- TOC entry 2050 (class 2604 OID 1051394)
+-- TOC entry 189 (class 1259 OID 1284686)
+-- Name: test; Type: TABLE; Schema: public; Owner: root
+--
+
+CREATE TABLE public.test (
+    name character varying(255) NOT NULL,
+    string_value text,
+    float_value double precision,
+    integer_value integer,
+    index_value integer,
+    boolean_value boolean,
+    percentage_value double precision,
+    date_value timestamp without time zone,
+    object_value text,
+    object_values text,
+    object_container text,
+    foreign_object_values text,
+    object_ref_parent text
+);
+
+
+ALTER TABLE public.test OWNER TO root;
+
+--
+-- TOC entry 2052 (class 2604 OID 1284672)
 -- Name: account id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -212,7 +237,7 @@ ALTER TABLE ONLY public.account ALTER COLUMN id SET DEFAULT nextval('public.acco
 
 
 --
--- TOC entry 2047 (class 2604 OID 1051379)
+-- TOC entry 2053 (class 2604 OID 1284673)
 -- Name: house id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -220,7 +245,7 @@ ALTER TABLE ONLY public.house ALTER COLUMN id SET DEFAULT nextval('public.house_
 
 
 --
--- TOC entry 2048 (class 2604 OID 1051380)
+-- TOC entry 2054 (class 2604 OID 1284674)
 -- Name: person id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -228,7 +253,7 @@ ALTER TABLE ONLY public.person ALTER COLUMN id SET DEFAULT nextval('public.perso
 
 
 --
--- TOC entry 2049 (class 2604 OID 1051381)
+-- TOC entry 2055 (class 2604 OID 1284675)
 -- Name: place id; Type: DEFAULT; Schema: public; Owner: root
 --
 
@@ -236,8 +261,8 @@ ALTER TABLE ONLY public.place ALTER COLUMN id SET DEFAULT nextval('public.place_
 
 
 --
--- TOC entry 2180 (class 0 OID 1051391)
--- Dependencies: 188
+-- TOC entry 2182 (class 0 OID 1284646)
+-- Dependencies: 181
 -- Data for Name: account; Type: TABLE DATA; Schema: public; Owner: root
 --
 
@@ -246,8 +271,8 @@ INSERT INTO public.account VALUES (2, 'test2', '788a29c48e3ef8790f15e0340e7330e0
 
 
 --
--- TOC entry 2173 (class 0 OID 1051358)
--- Dependencies: 181
+-- TOC entry 2184 (class 0 OID 1284651)
+-- Dependencies: 183
 -- Data for Name: house; Type: TABLE DATA; Schema: public; Owner: root
 --
 
@@ -257,8 +282,8 @@ INSERT INTO public.house VALUES (3, 120, true, 2);
 
 
 --
--- TOC entry 2175 (class 0 OID 1051363)
--- Dependencies: 183
+-- TOC entry 2186 (class 0 OID 1284656)
+-- Dependencies: 185
 -- Data for Name: person; Type: TABLE DATA; Schema: public; Owner: root
 --
 
@@ -272,8 +297,8 @@ INSERT INTO public.person VALUES (7, 'jesse', 'doe', 'Sample\Person\Man', 2, NUL
 
 
 --
--- TOC entry 2177 (class 0 OID 1051371)
--- Dependencies: 185
+-- TOC entry 2188 (class 0 OID 1284664)
+-- Dependencies: 187
 -- Data for Name: place; Type: TABLE DATA; Schema: public; Owner: root
 --
 
@@ -283,8 +308,17 @@ INSERT INTO public.place VALUES (3, 10, 'avenue', 'Jean Moulin', 'Paris');
 
 
 --
--- TOC entry 2191 (class 0 OID 0)
--- Dependencies: 187
+-- TOC entry 2190 (class 0 OID 1284686)
+-- Dependencies: 189
+-- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: root
+--
+
+INSERT INTO public.test VALUES ('first', 'string', 1.5, 2, 5, true, 0.5, '2021-01-13 17:28:50.940751', '{"id":"1","propertyOne":"plop1","propertyTwo":"plop11"}', '[{"id":"2","propertyOne":"plop2","propertyTwo":"plop22"},{"id":"3","propertyOne":"plop3","propertyTwo":"plop33"}]', '{"foreignObjectValue":3,"objectValueTwo":{"id":"1","propertyTwoOne":"2plop1","propertyTwoOneTwo":"2plop11"}}', '[1,3]', '{"parent":"first","name":"first"}');
+INSERT INTO public.test VALUES ('second', 'string', 1.5, 2, 5, true, 0.5, '2021-01-13 17:28:50.940751', '{"id":"1","propertyOne":"plopplop1","propertyTwo":"plopplop11"}', '[{"id":"2","propertyOne":"plopplop2","propertyTwo":"plopplop22"},{"id":"3","propertyOne":"plopplop3","propertyTwo":"plopplop33"}]', '{"foreignObjectValue":3,"objectValueTwo":{"id":"1","propertyTwoOne":"2plopplop1","propertyTwoOneTwo":"2plopplop11"}}', '[1,3]', '{"parent":"second","name":"second"}');
+
+--
+-- TOC entry 2201 (class 0 OID 0)
+-- Dependencies: 182
 -- Name: account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -292,8 +326,8 @@ SELECT pg_catalog.setval('public.account_id_seq', 2, true);
 
 
 --
--- TOC entry 2192 (class 0 OID 0)
--- Dependencies: 182
+-- TOC entry 2202 (class 0 OID 0)
+-- Dependencies: 184
 -- Name: house_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -301,8 +335,8 @@ SELECT pg_catalog.setval('public.house_id_seq', 3, true);
 
 
 --
--- TOC entry 2193 (class 0 OID 0)
--- Dependencies: 184
+-- TOC entry 2203 (class 0 OID 0)
+-- Dependencies: 186
 -- Name: person_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -310,8 +344,8 @@ SELECT pg_catalog.setval('public.person_id_seq', 11, true);
 
 
 --
--- TOC entry 2194 (class 0 OID 0)
--- Dependencies: 186
+-- TOC entry 2204 (class 0 OID 0)
+-- Dependencies: 188
 -- Name: place_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
@@ -319,16 +353,8 @@ SELECT pg_catalog.setval('public.place_id_seq', 4, true);
 
 
 --
--- TOC entry 2058 (class 2606 OID 1051396)
--- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: root
---
-
-ALTER TABLE ONLY public.account
-    ADD CONSTRAINT account_pkey PRIMARY KEY (id);
-    
---
--- TOC entry 2133 (class 2606 OID 304502)
--- Name: db_constraint account_name_unique_key; Type: CONSTRAINT; Schema: public; Owner: root
+-- TOC entry 2057 (class 2606 OID 1284679)
+-- Name: account account_name_unique_key; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
 ALTER TABLE ONLY public.account
@@ -336,7 +362,16 @@ ALTER TABLE ONLY public.account
 
 
 --
--- TOC entry 2052 (class 2606 OID 1051383)
+-- TOC entry 2059 (class 2606 OID 1284677)
+-- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.account
+    ADD CONSTRAINT account_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2061 (class 2606 OID 1284681)
 -- Name: house house_pkey; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -345,7 +380,7 @@ ALTER TABLE ONLY public.house
 
 
 --
--- TOC entry 2054 (class 2606 OID 1051385)
+-- TOC entry 2063 (class 2606 OID 1284683)
 -- Name: person pk_person; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -354,7 +389,7 @@ ALTER TABLE ONLY public.person
 
 
 --
--- TOC entry 2056 (class 2606 OID 1051387)
+-- TOC entry 2065 (class 2606 OID 1284685)
 -- Name: place pk_place; Type: CONSTRAINT; Schema: public; Owner: root
 --
 
@@ -363,7 +398,16 @@ ALTER TABLE ONLY public.place
 
 
 --
--- TOC entry 2186 (class 0 OID 0)
+-- TOC entry 2067 (class 2606 OID 1284693)
+-- Name: test test_pkey; Type: CONSTRAINT; Schema: public; Owner: root
+--
+
+ALTER TABLE ONLY public.test
+    ADD CONSTRAINT test_pkey PRIMARY KEY (name);
+
+
+--
+-- TOC entry 2196 (class 0 OID 0)
 -- Dependencies: 7
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -374,7 +418,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2020-09-21 01:46:56 CEST
+-- Completed on 2021-01-13 18:42:39 CET
 
 --
 -- PostgreSQL database dump complete

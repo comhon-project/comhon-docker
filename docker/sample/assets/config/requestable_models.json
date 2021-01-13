@@ -28,5 +28,13 @@
   {
     "comhon_model_name": "Sample\\House",
     "api_model_name": "house"
+  },
+  {
+    "comhon_model_name": "Sample\\Test",
+    "api_model_name": "test"
+  },
+  {
+    "comhon_model_name": "Sample\\Restriction",
+    "api_model_name": "restriction"
   }
 ]

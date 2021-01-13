@@ -1,0 +1,11 @@
+{
+    "name": "Sample\\Restriction",
+    "version": "3.0",
+    "serialization": {
+        "settings": {
+            "dir_path": ".\/sample\/restriction",
+            "file_name": "file.json",
+            "inheritance-": "Comhon\\File\\JsonFile"
+        }
+    }
+}
