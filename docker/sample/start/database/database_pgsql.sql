@@ -315,6 +315,7 @@ INSERT INTO public.place VALUES (3, 10, 'avenue', 'Jean Moulin', 'Paris');
 
 INSERT INTO public.test VALUES ('first', 'string', 1.5, 2, 5, true, 0.5, '2021-01-13 17:28:50.940751', '{"id":"1","propertyOne":"plop1","propertyTwo":"plop11"}', '[{"id":"2","propertyOne":"plop2","propertyTwo":"plop22"},{"id":"3","propertyOne":"plop3","propertyTwo":"plop33"}]', '{"foreignObjectValue":3,"objectValueTwo":{"id":"1","propertyTwoOne":"2plop1","propertyTwoOneTwo":"2plop11"}}', '[1,3]', '{"parent":"first","name":"first"}');
 INSERT INTO public.test VALUES ('second', 'string', 1.5, 2, 5, true, 0.5, '2021-01-13 17:28:50.940751', '{"id":"1","propertyOne":"plopplop1","propertyTwo":"plopplop11"}', '[{"id":"2","propertyOne":"plopplop2","propertyTwo":"plopplop22"},{"id":"3","propertyOne":"plopplop3","propertyTwo":"plopplop33"}]', '{"foreignObjectValue":3,"objectValueTwo":{"id":"1","propertyTwoOne":"2plopplop1","propertyTwoOneTwo":"2plopplop11"}}', '[1,3]', '{"parent":"second","name":"second"}');
+INSERT INTO public.test VALUES ('third', '', null, 2, 5, true, 0.5, '2021-01-13 17:28:50.940751', '{"id":"1","propertyTwo":"plopplop11"}', '[{"id":"2","propertyOne":"plopplop2","propertyTwo":null},{"id":"3","propertyOne":"plopplop3","propertyTwo":"plopplop33"}]', '{"foreignObjectValue":3,"objectValueTwo":null}', '[]', '{"parent":"third","name":"third"}');
 
 --
 -- TOC entry 2201 (class 0 OID 0)
