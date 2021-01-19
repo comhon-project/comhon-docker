@@ -14,6 +14,7 @@
         },
         {
             "name": "user",
+            "is_required": true,
             "regex": "\/^\\w+$\/",
             "inheritance-": "Comhon\\Manifest\\Property\\String"
         },
@@ -99,6 +100,33 @@
             "inheritance-": "Comhon\\Manifest\\Property\\Object"
         },
         {
+            "name": "notNullObject",
+            "not_null": true,
+            "model": "Object",
+            "inheritance-": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "myObject",
+            "model": "Object",
+            "inheritance-": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "requiredObject",
+            "is_required": true,
+            "model": "Object",
+            "inheritance-": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "requiredAssocArray",
+            "is_required": true,
+            "is_associative": true,
+            "values": {
+                "name": "value",
+                "inheritance-": "Comhon\\Manifest\\Value\\String"
+            },
+            "inheritance-": "Comhon\\Manifest\\Property\\Array"
+        },
+        {
             "name": "notEmpty",
             "not_empty": true,
             "inheritance-": "Comhon\\Manifest\\Property\\String"
@@ -134,5 +162,17 @@
             "inheritance-": "Comhon\\Manifest\\Property\\Array"
         }
     ],
-    "version": "3.0"
+    "version": "3.0",
+    "types": [
+        {
+            "name": "Object",
+            "properties": [
+                {
+                    "name": "propertyOne",
+                    "is_required": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                }
+            ]
+        }
+    ]
 }

@@ -14,6 +14,19 @@
     "enumFloatArray": [1.5, null],
     "notNullArray": [1.5],
     "notNullForeign": 1,
+    "notNullObject": {
+        "propertyOne": "value"
+    },
+    "myObject": {
+        "propertyOne": "value"
+    },
+    "requiredObject": {
+        "propertyOne": "value"
+    },
+    "requiredAssocArray": {
+        "one": "one_value",
+        "two": "two_value"
+    },
     "notEmpty": "not_empty",
     "notEmptyArray": ["not_empty"],
     "length": "foo",
