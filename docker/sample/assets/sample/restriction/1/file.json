@@ -1,7 +1,7 @@
 {
     "id": 1,
     "color": "red",
-    "user": "anonym",
+    "user": "all_values_set",
     "emails": [
         "john.doe@gmail.com",
         "jane.doe@gmail.com"
@@ -14,16 +14,46 @@
     "enumFloatArray": [1.5, null],
     "notNullArray": [1.5],
     "notNullForeign": 1,
+    "notNullForeignArray": [1,2],
     "notNullObject": {
-        "propertyOne": "value"
+        "propertyTwoOne": "value1"
     },
+    "notNullArrayObject": [
+        {
+            "propertyTwoOne": "value2"
+        },
+        {}
+    ],
     "myObject": {
-        "propertyOne": "value"
+        "propertyOneOne": "value3",
+        "propertyOneTwo": "value3.5",
+        "propertyOneThree": "value3.6",
+        "propertyOneFour": "value3.7"
     },
+    "myArrayObject": [
+        {
+            "propertyOneOne": "value4",
+            "propertyOneTwo": "value4.5",
+            "propertyOneThree": "value4.6",
+            "propertyOneFour": "value4.7"
+        }
+    ],
     "requiredObject": {
-        "propertyOne": "value"
+        "propertyThreeOne": "value5",
+        "propertyThreeTwo": "value5.5"
+    },
+    "myNestedObject": {
+        "propertyNestedOne": {
+            "propertyNestedTwo": {
+                "propertyNestedThree": "value5"
+            }
+        }
     },
     "requiredAssocArray": {
+        "one": "one_value",
+        "two": "two_value"
+    },
+    "assocArrayNotEmptyElement": {
         "one": "one_value",
         "two": "two_value"
     },

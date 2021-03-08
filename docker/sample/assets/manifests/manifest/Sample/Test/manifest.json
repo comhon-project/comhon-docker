@@ -90,6 +90,21 @@
                     "name": "objectValueTwo",
                     "model": "ObjectTwo",
                     "inheritance-": "Comhon\\Manifest\\Property\\Object"
+                },
+                {
+                    "name": "objectThreeValues",
+                    "values": {
+                        "name": "objectValue",
+                        "model": "ObjectThree",
+                        "inheritance-": "Comhon\\Manifest\\Value\\Object"
+                    },
+                    "inheritance-": "Comhon\\Manifest\\Property\\Array"
+                },
+                {
+                    "name": "objectIsolated",
+                    "is_isolated": true,
+                    "model": "ObjectFour",
+                    "inheritance-": "Comhon\\Manifest\\Property\\Object"
                 }
             ]
         },
@@ -145,6 +160,40 @@
                         "inheritance-": "Comhon\\Manifest\\Value\\Object"
                     },
                     "inheritance-": "Comhon\\Manifest\\Property\\Array"
+                }
+            ]
+        },
+        {
+            "name": "ObjectThree",
+            "properties": [
+                {
+                    "name": "id",
+                    "is_id": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\Integer"
+                },
+                {
+                    "name": "propertyThreeOne",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                }
+            ]
+        },
+        {
+            "name": "ObjectFour",
+            "properties": [
+                {
+                    "name": "objectThreeValues",
+                    "values": {
+                        "name": "objectValue",
+                        "model": "ObjectThree",
+                        "inheritance-": "Comhon\\Manifest\\Value\\Object"
+                    },
+                    "inheritance-": "Comhon\\Manifest\\Property\\Array"
+                },
+                {
+                    "name": "objectThreeForeign",
+                    "model": "ObjectThree",
+                    "is_foreign": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\Object"
                 }
             ]
         },

@@ -1,8 +1,8 @@
 {
     "id": 3,
-    "user": "name",
+    "user": "only_required_values_set",
     "requiredObject": {
-        "propertyOne": "foo"
+        "propertyThreeTwo":"foo"
     },
     "requiredAssocArray": {
         "one": "foo",

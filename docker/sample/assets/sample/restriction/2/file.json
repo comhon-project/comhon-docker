@@ -11,12 +11,11 @@
     "enumFloatArray": null,
     "notNullArray": [1.5],
     "notNullForeign": 1,
-    "notNullObject": {
-        "propertyOne": null
-    },
+    "myObject": null,
+    "myArrayObject": null,
     "requiredObject": null,
     "requiredAssocArray": null,
-    "myObject": null,
+    "assocArrayNotEmptyElement": null,
     "notEmpty": null,
     "notEmptyArray": null,
     "length": null,

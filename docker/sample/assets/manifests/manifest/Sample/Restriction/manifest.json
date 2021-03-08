@@ -100,20 +100,56 @@
             "inheritance-": "Comhon\\Manifest\\Property\\Object"
         },
         {
+            "name": "notNullForeignArray",
+            "values": {
+                "name": "notNullForeign",
+                "is_foreign": true,
+                "not_null": true,
+                "model": "\\Sample\\Basic",
+                "inheritance-": "Comhon\\Manifest\\Value\\Object"
+            },
+            "inheritance-": "Comhon\\Manifest\\Property\\Array"
+        },
+        {
             "name": "notNullObject",
             "not_null": true,
-            "model": "Object",
+            "model": "ObjectTwo",
             "inheritance-": "Comhon\\Manifest\\Property\\Object"
         },
         {
+            "name": "notNullArrayObject",
+            "not_null": true,
+            "values": {
+                "name": "notNullObjectValue",
+                "not_null": true,
+                "model": "ObjectTwo",
+                "inheritance-": "Comhon\\Manifest\\Value\\Object"
+            },
+            "inheritance-": "Comhon\\Manifest\\Property\\Array"
+        },
+        {
             "name": "myObject",
-            "model": "Object",
+            "model": "ObjectOne",
+            "inheritance-": "Comhon\\Manifest\\Property\\Object"
+        },
+        {
+            "name": "myArrayObject",
+            "values": {
+                "name": "objectValue",
+                "model": "ObjectOne",
+                "inheritance-": "Comhon\\Manifest\\Value\\Object"
+            },
+            "inheritance-": "Comhon\\Manifest\\Property\\Array"
+        },
+        {
+            "name": "myNestedObject",
+            "model": "ObjectNestedOne",
             "inheritance-": "Comhon\\Manifest\\Property\\Object"
         },
         {
             "name": "requiredObject",
             "is_required": true,
-            "model": "Object",
+            "model": "ObjectThree",
             "inheritance-": "Comhon\\Manifest\\Property\\Object"
         },
         {
@@ -122,6 +158,17 @@
             "is_associative": true,
             "values": {
                 "name": "value",
+                "inheritance-": "Comhon\\Manifest\\Value\\String"
+            },
+            "inheritance-": "Comhon\\Manifest\\Property\\Array"
+        },
+        {
+            "name": "assocArrayNotEmptyElement",
+            "is_associative": true,
+            "values": {
+                "name": "value",
+                "not_empty": true,
+                "not_null": true,
                 "inheritance-": "Comhon\\Manifest\\Value\\String"
             },
             "inheritance-": "Comhon\\Manifest\\Property\\Array"
@@ -160,18 +207,174 @@
                 "inheritance-": "Comhon\\Manifest\\Value\\Array"
             },
             "inheritance-": "Comhon\\Manifest\\Property\\Array"
+        },
+        {
+            "name": "conflictsAndDependsObject",
+            "model": "ObjectConflictsAndDepends",
+            "inheritance-": "Comhon\\Manifest\\Property\\Object"
         }
     ],
     "version": "3.0",
     "types": [
         {
-            "name": "Object",
+            "name": "ObjectOne",
             "properties": [
                 {
-                    "name": "propertyOne",
+                    "name": "propertyOneOne",
+                    "is_required": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyOneTwo",
+                    "is_required": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyOneThree",
+                    "is_required": true,
+                    "not_empty": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyOneFour",
+                    "is_required": true,
+                    "not_empty": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyOneFive",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyOneSix",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                }
+            ]
+        },
+        {
+            "name": "ObjectTwo",
+            "properties": [
+                {
+                    "name": "propertyTwoOne",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                }
+            ]
+        },
+        {
+            "name": "ObjectThree",
+            "properties": [
+                {
+                    "name": "propertyThreeOne",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyThreeTwo",
+                    "is_required": true,
+                	"not_empty": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                }
+            ]
+        },
+        {
+            "name": "ObjectNestedOne",
+            "properties": [
+                {
+                    "name": "propertyNestedOne",
+                    "is_required": true,
+                    "model": "ObjectNestedTwo",
+                    "inheritance-": "Comhon\\Manifest\\Property\\Object"
+                }
+            ]
+        },
+        {
+            "name": "ObjectNestedTwo",
+            "properties": [
+                {
+                    "name": "propertyNestedTwo",
+                    "is_required": true,
+                    "not_null": true,
+                    "model": "ObjectNestedThree",
+                    "inheritance-": "Comhon\\Manifest\\Property\\Object"
+                }
+            ]
+        },
+        {
+            "name": "ObjectNestedThree",
+            "properties": [
+                {
+                    "name": "propertyNestedThree",
                     "is_required": true,
                     "inheritance-": "Comhon\\Manifest\\Property\\String"
                 }
+            ]
+        },
+        {
+            "name": "ObjectConflictsAndDepends",
+            "properties": [
+                {
+                    "name": "propertyZero",
+                    "is_required": true,
+                    "depends": [
+                        "propertyOne",
+                        "propertyTwo"
+                    ],
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyOne",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyTwo",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyThree",
+                    "depends": [
+                        "propertyThreePointFive"
+                    ],
+                    "not_empty": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyThreePointFive",
+                    "not_empty": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyFour",
+                    "is_required": true,
+                    "not_empty": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyFive",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertySix",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertySeven",
+                    "not_empty": true,
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                },
+                {
+                    "name": "propertyHeight",
+                    "inheritance-": "Comhon\\Manifest\\Property\\String"
+                }
+            ],
+            "conflicts": [
+                [
+                    "propertyFour",
+                    "propertyFive"
+                ],
+                [
+                    "propertySix",
+                    "propertySeven",
+                    "propertyHeight"
+                ]
             ]
         }
     ]
